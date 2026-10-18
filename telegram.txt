@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content=" Peter's Telegram community directory and web developer portfolio.">
+  <title>Peter | Telegram Hub & Web Developer</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1220;
+      --panel: #141f31;
+      --panel-light: #1c2b40;
+      --text: #f1f5f9;
+      --muted: #9fb0c5;
+      --blue: #32a9e8;
+      --border: #293a50;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    .hero {
+      padding: 52px 20px 38px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at top, #214b77 0%, transparent 70%),
+        linear-gradient(135deg, #13253d, #0b1220);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand-icon {
+      width: 76px;
+      height: 76px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 14px;
+      background: #239bd7;
+      border-radius: 24px;
+      font-size: 38px;
+      box-shadow: 0 8px 35px #168bd344;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 6vw, 45px);
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      color: #c4d5e8;
+      margin: 8px 0 18px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 12px;
+      border: 1px solid #4c7397;
+      border-radius: 999px;
+      color: #bfe5ff;
+      font-size: 13px;
+    }
+
+    main {
+      width: min(780px, 92%);
+      margin: 30px auto 55px;
+    }
+
+    section { margin-bottom: 32px; }
+
+    .section-title {
+      font-size: 22px;
+      margin: 0 0 15px;
+    }
+
+    .profile, .about, .group {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px;
+    }
+
+    .avatar {
+      width: 66px;
+      height: 66px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #226da7, #273d65);
+      border-radius: 20px;
+      font-size: 30px;
+    }
+
+    .profile h3 { margin: 0; font-size: 20px; }
+
+    .profile p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .about {
+      padding: 22px;
+    }
+
+    .about p {
+      color: #c2cede;
+      margin: 0 0 13px;
+    }
+
+    .about p:last-child { margin-bottom: 0; }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .skill {
+      background: var(--panel-light);
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      border-radius: 8px;
+      color: #c5e8ff;
+      font-size: 12px;
+    }
+
+    .search {
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 15px;
+      color: var(--text);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      font: inherit;
+    }
+
+    .search:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px #32a9e822;
+    }
+
+    .group-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .group {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 15px;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .group:hover {
+      border-color: #47749b;
+      transform: translateY(-2px);
+    }
+
+    .group[hidden] { display: none; }
+
+    .group-icon {
+      width: 49px;
+      height: 49px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      background: var(--panel-light);
+      border-radius: 14px;
+      font-size: 24px;
+    }
+
+    .group-info { flex: 1; min-width: 0; }
+
+    .group-info h3 {
+      font-size: 15px;
+      line-height: 1.4;
+      margin: 0 0 4px;
+      overflow-wrap: anywhere;
+    }
+
+    .group-info p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .open-link {
+      display: inline-block;
+      flex-shrink: 0;
+      padding: 9px 12px;
+      border-radius: 9px;
+      background: #168dcc;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .open-link:hover { background: #0877b2; }
+
+    .empty {
+      padding: 22px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 24px 15px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer a { color: #83d1ff; text-decoration: none; }
+
+    @media (max-width: 460px) {
+      .hero { padding-top: 38px; }
+      .group { gap: 9px; padding: 11px; }
+      .group-icon { width: 40px; height: 40px; font-size: 20px; }
+      .group-info h3 { font-size: 13px; }
+      .open-link { padding: 8px; font-size: 11px; }
+      .profile { padding: 15px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="brand-icon" aria-hidden="true">✈</div>
+    <h1>Wonder Peter</h1>
+    <p class="subtitle">Telegram Communities & My Developer Space</p>
+    <span class="tag">Web Developer · Community Explorer</span>
+  </header>
+
+  <main>
+    <section aria-labelledby="owner-title">
+      <h2 class="section-title" id="owner-title">👤 Website Owner</h2>
+      <div class="profile">
+        <div class="avatar" aria-hidden="true">👨‍💻</div>
+        <div>
+          <h3>Peter</h3>
+          <p>Owner & Web Developer</p>
+          <p>Building my own digital space.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="about-title">
+      <h2 class="section-title" id="about-title">✨ About Me</h2>
+      <div class="about">
+        <p>
+          Hello! I'm Peter, a web developer interested in building
+          modern websites and exploring technology.
+        </p>
+        <p>
+          Welcome to my Telegram Hub. Here you can discover my
+          listed communities and open them directly on Telegram.
+        </p>
+        <div class="skills" aria-label="Interests">
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">Web Design</span>
+          <span class="skill">Technology</span>
+          <span class="skill">Cybersecurity</span>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="groups-title">
+      <h2 class="section-title" id="groups-title">
+        🌐 My Telegram Communities
+      </h2>
+
+      <input
+        class="search"
+        id="group-search"
+        type="search"
+        placeholder="🔍 Search groups and communities..."
+        aria-label="Search Telegram communities"
+        autocomplete="off"
+      >
+
+      <div class="group-list" id="group-list">
+        <article class="group">
+          <div class="group-icon" aria-hidden="true">🌍</div>
+          <div class="group-info">
+            <h3>Europe America Asia Global Friends</h3>
+            <p>International community</p>
+          </div>
+          <a class="open-link"
+             href="https://t.me/Europe_America_AsiaGlobalFriends"
+             target="_blank" rel="noopener noreferrer">OPEN ↗</a>
+        </article>
+
+        <article class="group">
+          <div class="group-icon" aria-hidden="true">🇰🇷</div>
+          <div class="group-info">
+            <h3>Korean Friend Group</h3>
+            <p>Friends & community</p>
+          </div>
+          <a class="open-link"
+             href="https://t.me/korianfrindgroup"
+             target="_blank" rel="noopener noreferrer">OPEN ↗</a>
+        </article>
+
+        <article class="group">
+          <div class="group-icon" aria-hidden="true">🌸</div>
+          <div class="group-info">
+            <h3>Russian Girls Zone</h3>
+            <p>Russian community</p>
+          </div>
+          <a class="open-link"
+             href="https://t.me/russian_girlszone"
+             target="_blank" rel="noopener noreferrer">OPEN ↗</a>
+        </article>
+
+        <article class="group">
+          <div class="group-icon" aria-hidden="true">🛡️</div>
+          <div class="group-info">
+            <h3>Cybersecurity Hacking</h3>
+            <p>Cybersecurity community</p>
+          </div>
+          <a class="open-link"
+             href="https://t.me/Cybersecurity_hacking"
+             target="_blank" rel="noopener noreferrer">OPEN ↗</a>
+        </article>
+
+        <article class="group">
+          <div class="group-icon" aria-hidden="true">🤝</div>
+          <div class="group-info">
+            <h3>Russian Friend World</h3>
+            <p>International friendship</p>
+          </div>
+          <a class="open-link"
+             href="https://t.me/RussianFriend_world"
+             target="_blank" rel="noopener noreferrer">OPEN ↗</a>
+        </article>
+      </div>
+
+      <p class="empty" id="empty-message" hidden>
+        No matching communities found. Try another search.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made with ❤️ by Peter</p>
+    <p>© <span id="year"></span> Wonder Peter · Telegram Hub</p>
+    <p>
+      <a href="https://github.com/" target="_blank"
+         rel="noopener noreferrer">GitHub</a>
+      &nbsp;·&nbsp;
+      <a href="https://telegram.org/" target="_blank"
+         rel="noopener noreferrer">Telegram</a>
+    </p>
+  </footer>
+
+  <script>
+    "use strict";
+
+    const searchInput = document.getElementById("group-search");
+    const groups = Array.from(
+      document.querySelectorAll("#group-list .group")
+    );
+    const emptyMessage = document.getElementById("empty-message");
+
+    function filterGroups() {
+      const query = searchInput.value.trim().toLocaleLowerCase();
+      let visibleCount = 0;
+
+      groups.forEach((group) => {
+        const matches = group.textContent
+          .toLocaleLowerCase()
+          .includes(query);
+
+        group.hidden = !matches;
+
+        if (matches) visibleCount++;
+      });
+
+      emptyMessage.hidden = visibleCount > 0;
+    }
+
+    searchInput.addEventListener("input", filterGroups);
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
